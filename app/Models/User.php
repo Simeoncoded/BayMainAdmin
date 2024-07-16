@@ -11,6 +11,9 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+
+    protected $table= 'employees';
+
     /**
      * The attributes that are mass assignable.
      *

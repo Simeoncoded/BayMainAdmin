@@ -348,8 +348,8 @@ CREATE TABLE `mailist` (
 -- Dumping data for table `mailist`
 --
 
-INSERT INTO `mailist` (`id`, `email`, `created_at`, `updated_at`) VALUES
-(1, 'sirabdull70@gmail.com', '2024-06-11 11:18:46', '2024-06-11 11:18:46');
+INSERT INTO `mailist` (`id`, `email`, `created_at`, `updated_at`) 
+VALUES(1, 'sirabdull70@gmail.com', '2024-06-11 11:18:46', '2024-06-11 11:18:46');
 
 -- --------------------------------------------------------
 
@@ -413,8 +413,6 @@ CREATE TABLE `otps` (
 -- Dumping data for table `otps`
 --
 
-INSERT INTO `otps` (`id`, `otp`, `email`, `expiry`, `created_at`, `updated_at`) VALUES
-(4, '4657', 'sirabdull70@gmail.com', '2024-07-09 14:14:22', '2024-07-09 12:04:22', '2024-07-09 12:04:22'),
 
 
 -- --------------------------------------------------------

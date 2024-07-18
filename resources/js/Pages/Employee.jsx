@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../../css/employee.module.css';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import { router } from '@inertiajs/react';
 
 export default function Employee({ auth, employees }) {
   const [showForm, setShowForm] = useState(false);
@@ -33,7 +34,8 @@ export default function Employee({ auth, employees }) {
   };
 
   const deleteEmployee = (id) => {
-    setEmployees(employees.filter(employee => employee.id !== id));
+    // setEmployees(employees.filter(employee => employee.id !== id));
+    router.post(`/employee/delete/${id}`)
   };
 
   const viewMore = (id) => {

@@ -1,0 +1,20 @@
+.dHead{
+    font-size: 30px;
+    font-weight: bold;
+}
+.goalsCols {
+    display: grid;
+    gap: 20px;
+    /*grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;*/
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    margin:15px auto 25px auto;
+    width: 95%;
+}
+.dContent{
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center;
+    padding: 20px;
+}

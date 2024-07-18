@@ -16,6 +16,7 @@ class Employee extends Authenticatable
    protected $guarded = [];
 
 
+  
 
 
 }

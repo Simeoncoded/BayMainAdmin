@@ -256,7 +256,8 @@ CREATE TABLE `employees` (
 -- Dumping data for table `employees`
 --
 
-INSERT INTO `employees` (`id`, `name`, `salary`, `email`, `password`, `image`, `token`, `role`, `skills`, `deployment`, `employment_type`, `contact`, `address`, `salary_bank`, `salary_account`, `created_at`, `updated_at`) VALUES
+INSERT INTO `employees` (`id`, `name`, `salary`, `email`, `password`, `image`, `token`, `role`, `skills`, `deployment`, `employment_type`, `contact`, `address`, `salary_bank`, `salary_account`, `created_at`, `updated_at`)
+ VALUES
 (2, 'Prof. Waldo Kunze MD', 95976.00, 'lavinia34@example.org', '', 'https://via.placeholder.com/640x480.png/00dd33?text=temporibus', 'BAYEMP_11950', 'frontend-developer', 'payment-gateway', '', 'Hybrid', '+1 (662) 683-3679', '7745 Christiansen Rapid Suite 631\nDaijaville, MO 31166-7391', 'keystone bank', '5961', '2024-06-13 14:46:44', '2024-06-13 14:46:44'),
 (11, 'Akintayo jide Abdullah', NULL, 'sirabdull70@gmail.com', '$2y$12$YHErhCHMyD8pc7BJkL8zle9ai2JsTDdiwsCs88tEdDe5pfJO6BMZ2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-07-16 08:42:00', '2024-07-16 08:42:00');
 

@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import styles from '../../css/employee.module.css';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { router } from '@inertiajs/react';
+import { router, useForm } from '@inertiajs/react';
+
+
 
 export default function Employee({ auth, employees }) {
   const [showForm, setShowForm] = useState(false);
-  const [newEmployee, setNewEmployee] = useState({
+
+  const { data, setData, post, processing, errors} = useForm({
     name: '', salary: '', email: '', password: '', image: '', token: '',
     role: '', skills: '', deployment: '', employment_type: '', contact: '',
     address: '', salary_bank: '', salary_account: ''
   });
+
   const [selectedEmployee, setSelectedEmployee] = useState(null);
 
   const addEmployee = () => {
@@ -18,19 +22,12 @@ export default function Employee({ auth, employees }) {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setNewEmployee({ ...newEmployee, [name]: value });
+    setData({ ...data, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newEmployeeWithId = { ...newEmployee, id: employees.length + 1, salary: parseFloat(newEmployee.salary) };
-    setEmployees([...employees, newEmployeeWithId]);
-    setShowForm(false);
-    setNewEmployee({
-      name: '', salary: '', email: '', image: '', token: '',
-      role: '', skills: '', deployment: '', employment_type: '', contact: '',
-      address: '', salary_bank: '', salary_account: ''
-    });
+    post('/employee/create')
   };
 
   const deleteEmployee = (id) => {
@@ -58,44 +55,50 @@ export default function Employee({ auth, employees }) {
         
         {/* Form to add new employee */}
         {showForm && (
+          
           <form onSubmit={handleSubmit} className={styles.form}>
             <input
               type="text"
               name="name"
               placeholder="Name"
-              value={newEmployee.name}
+              value={data.name}
               onChange={handleInputChange}
               required
             />
+             {errors.password && <div>{errors.name}</div>}
+               {errors.name && <div>{errors.name}</div>}
             <input
               type="number"
               name="salary"
               placeholder="Salary"
-              value={newEmployee.salary}
+              value={data.salary}
               onChange={handleInputChange}
               required
             />
+               {errors.salary && <div>{errors.salary}</div>}
             <input
               type="email"
               name="email"
               placeholder="Email"
-              value={newEmployee.email}
+              value={data.email}
               onChange={handleInputChange}
               required
             />
+               {errors.email && <div>{errors.email}</div>}
             <input
               type="text"
               name="role"
               placeholder="Role"
-              value={newEmployee.role}
+              value={data.role}
               onChange={handleInputChange}
               required
             />
+               {errors.role && <div>{errors.role}</div>}
             <input
               type="text"
               name="skills"
               placeholder="Skills"
-              value={newEmployee.skills}
+              value={data.skills}
               onChange={handleInputChange}
               required
             />
@@ -103,50 +106,64 @@ export default function Employee({ auth, employees }) {
               type="text"
               name="deployment"
               placeholder="Deployment"
-              value={newEmployee.deployment}
+              value={data.deployment}
               onChange={handleInputChange}
               required
             />
+             {errors.deployment && <div>{errors.deployment}</div>}
             <input
               type="text"
               name="employment_type"
               placeholder="Employment Type"
-              value={newEmployee.employment_type}
+              value={data.employment_type}
               onChange={handleInputChange}
               required
             />
+             {errors.email && <div>{errors.employment_type}</div>}
             <input
               type="text"
               name="contact"
               placeholder="Contact"
-              value={newEmployee.contact}
+              value={data.contact}
               onChange={handleInputChange}
               required
             />
+             {errors.contact && <div>{errors.contact}</div>}
             <input
               type="text"
               name="address"
               placeholder="Address"
-              value={newEmployee.address}
+              value={data.address}
               onChange={handleInputChange}
               required
             />
+             {errors.address && <div>{errors.address}</div>}
             <input
               type="text"
               name="salary_bank"
               placeholder="Salary Bank"
-              value={newEmployee.salary_bank}
+              value={data.salary_bank}
               onChange={handleInputChange}
               required
             />
+             {errors.salary_banka && <div>{errors.salary_bank}</div>}
             <input
               type="text"
               name="salary_account"
               placeholder="Salary Account"
-              value={newEmployee.salary_account}
+              value={data.salary_account}
               onChange={handleInputChange}
               required
             />
+              <input
+              type="password"
+              name="password"
+              placeholder="password"
+              value={data.password}
+              onChange={handleInputChange}
+              required
+            />
+             {errors.salary_account && <div>{errors.salary_account}</div>}
             <button type="submit" className={styles.submitButton}>Submit</button>
           </form>
         )}

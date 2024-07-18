@@ -17,8 +17,6 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-
-
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard', [
             'auth' => [
@@ -27,22 +25,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
             'employees' => [
                 'employee' => Employee::all()
             ]
-
         ]);
     })->name('dashboard');
-
-
-
-    Route::get('/employee', function () {
-        return Inertia::render('Employee', [
-            'auth' => [
-                'user' => auth()->user()
-            ],
-            'employees' => Employee::all() 
-        ]);
-    })->name('employee');
-
-
 
 });
 
@@ -53,9 +37,24 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::middleware(['auth'])->group(function () {
-    Route::post('/employee/delete/{id}', [EmployeeController::class, 'delete']);
+/**
+ * ------------------------------------------------------------
+ * EMPLOYEE ROUTE GROUPS 
+ * ------------------------------------------------------------
+ */
+Route::group(['middleware '=> 'auth', 'prefix'=> 'employee'], function () {
+    Route::get('/', [EmployeeController::class, 'index'])->name('employee');
+    Route::post('/delete/{id}', [EmployeeController::class, 'delete']);
+    Route::post('/update/{id}', [EmployeeController::class, 'update']);
+    Route::post('/create', [EmployeeController::class, 'create']);
+
 });
+
+
+
+
+
+
 
 require __DIR__.'/auth.php';
 

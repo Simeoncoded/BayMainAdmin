@@ -8,13 +8,67 @@
     /*grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;*/
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     margin:15px auto 25px auto;
     width: 95%;
+}
+.qCols {
+    display: grid;
+    gap:20px;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin:15px auto 25px auto;
+    
 }
 .dContent{
     border: 1px solid black;
     border-radius: 5px;
     text-align: center;
     padding: 20px;
+}
+.dContent h2{
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+.recentContent1 {
+    margin-left: 30px;
+    background-color: #fff;
+    height: 150px;
+    padding-left: 15px;
+    padding-top: 1px;
+    border-radius: 5px;
+}
+
+.recentPost, .recentComment {
+    margin-top: 20px;
+}
+
+.recentPostLink {
+    text-decoration: none;
+}
+
+.recentCommentLink {
+    text-decoration: none;
+}
+
+.recentH {
+    font-weight: bold;
+    font-size: 1.9em;
+}
+
+.recentH2 {
+    font-weight: bold;
+    font-size: 1.3em;
+}
+.recentH3{
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.9em;
+}
+.Qbtn{
+    background-color: rgb(96, 96, 171);
+    height: 80px;
+    width: 80%;
+    color: #fff;
+    border-radius: 5px;
 }

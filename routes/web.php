@@ -6,6 +6,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\Employee;
+use App\Models\Clients;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -30,6 +31,21 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 });
 
+Route::middleware(['auth', 'verified'])->group(function () {
+
+
+    Route::get('/client', function () {
+        return Inertia::render('Client', [
+            'auth' => [
+                'user' => auth()->user(),
+            ],
+
+            'clients' => Clients::all()
+        ]);
+    })->name('client');
+
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -48,7 +64,7 @@ Route::group(['middleware '=> 'auth', 'prefix'=> 'employee'], function () {
     Route::post('/update/{id}', [EmployeeController::class, 'update']);
     Route::post('/create', [EmployeeController::class, 'create']);
 
-});
+}); 
 
 
 

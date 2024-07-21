@@ -6,28 +6,27 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\Employee;
+<<<<<<< HEAD
 use App\Models\Clients;
+=======
+use App\Models\Contacts;
+use App\Models\Services;
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+>>>>>>> 9d3bc1a036eaded5b9231bdfb5818203f402c397
+
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard', [
             'auth' => [
                 'user' => auth()->user(),
-            ],
-            'employees' => [
-                'employee' => Employee::all()
-            ]
+            ],             'employees' => Employee::all(),
+            'messages' => Contacts::orderBy('created_at', 'desc')->take(3)->get(), 
+            //'services' => Services::latest(1) 
+            'services' =>Services::orderBy('created_at', 'desc')->take(3)->get()
         ]);
     })->name('dashboard');
+
 
 });
 
@@ -59,6 +58,7 @@ Route::middleware('auth')->group(function () {
  * ------------------------------------------------------------
  */
 Route::group(['middleware '=> 'auth', 'prefix'=> 'employee'], function () {
+
     Route::get('/', [EmployeeController::class, 'index'])->name('employee');
     Route::post('/delete/{id}', [EmployeeController::class, 'delete']);
     Route::post('/update/{id}', [EmployeeController::class, 'update']);
@@ -66,9 +66,18 @@ Route::group(['middleware '=> 'auth', 'prefix'=> 'employee'], function () {
 
 }); 
 
+/**
+ * ROOT ROUTING
+ */
 
-
-
+Route::get('/', function () {
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+});
 
 
 

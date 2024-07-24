@@ -6,13 +6,10 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\Employee;
-<<<<<<< HEAD
-use App\Models\Clients;
-=======
 use App\Models\Contacts;
 use App\Models\Services;
-
->>>>>>> 9d3bc1a036eaded5b9231bdfb5818203f402c397
+use App\Models\Clients;
+use App\Models\Plans;
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -38,12 +35,23 @@ Route::middleware(['auth', 'verified'])->group(function () {
             'auth' => [
                 'user' => auth()->user(),
             ],
-
             'clients' => Clients::all()
         ]);
     })->name('client');
 
 });
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/plan', function () {
+        return Inertia::render('Plan', [
+            'auth' => [
+                'user' => auth()->user(),
+            ],
+            'plans' => Plans::all()
+        ]);
+    })->name('plan');
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

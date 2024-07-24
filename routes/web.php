@@ -6,13 +6,11 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\Employee;
-<<<<<<< HEAD
 use App\Models\Clients;
-=======
+//use App\Models\ClientDetail;
 use App\Models\Contacts;
 use App\Models\Services;
 
->>>>>>> 9d3bc1a036eaded5b9231bdfb5818203f402c397
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -42,6 +40,21 @@ Route::middleware(['auth', 'verified'])->group(function () {
             'clients' => Clients::all()
         ]);
     })->name('client');
+
+});
+
+Route::middleware(['auth', 'verified'])->group(function () {
+
+
+    Route::get('/clientdetail', function () {
+        return Inertia::render('ClientDetail', [
+            'auth' => [
+                'user' => auth()->user(),
+            ],
+
+            'clients' => Clients::all()
+        ]);
+    })->name('clientdetail');
 
 });
 

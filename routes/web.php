@@ -6,10 +6,18 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\Employee;
+<<<<<<< HEAD
 use App\Models\Contacts;
 use App\Models\Services;
 use App\Models\Clients;
 use App\Models\Plans;
+=======
+use App\Models\Clients;
+//use App\Models\ClientDetail;
+use App\Models\Contacts;
+use App\Models\Services;
+
+>>>>>>> c8c21027ec3b32200130a498c670d61279949925
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -42,6 +50,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
+<<<<<<< HEAD
     Route::get('/plan', function () {
         return Inertia::render('Plan', [
             'auth' => [
@@ -53,6 +62,22 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 
+=======
+
+
+    Route::get('/clientdetail', function () {
+        return Inertia::render('ClientDetail', [
+            'auth' => [
+                'user' => auth()->user(),
+            ],
+
+            'clients' => Clients::all()
+        ]);
+    })->name('clientdetail');
+
+});
+
+>>>>>>> c8c21027ec3b32200130a498c670d61279949925
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

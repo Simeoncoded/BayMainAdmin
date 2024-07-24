@@ -14,7 +14,14 @@ export default function Client({ auth, clients }) {
             client.name.toLowerCase().includes(search.toLowerCase()) ||
             client.email.toLowerCase().includes(search.toLowerCase()) ||
             client.industry.toLowerCase().includes(search.toLowerCase())
-    ); 
+    );
+
+    const showMore = (client_pin) => {
+        const client = clients.find(
+            (client) => client.client_pin === client_pin
+        );
+        console.log(client);
+    };
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -50,9 +57,21 @@ export default function Client({ auth, clients }) {
                                 <td>{client.email}</td>
                                 <td>{client.industry}</td>
                                 <td>
-                                    <button className={styles.viMore}>
-                                        View More
-                                    </button>
+                                    <a
+                                        href={route("clientdetail")}
+                                        active={route().current("clientdetail")}
+                                    >
+                                        <button
+                                            className={styles.viMore}
+                                            onClick={() => {
+                                                console.log(client.client_pin);
+                                                showMore(client.client_pin);
+                                            }}
+                                        >
+                                            {" "}
+                                            View More
+                                        </button>
+                                    </a>
                                 </td>
                             </tr>
                         ))

@@ -18,7 +18,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('Dashboard', [
             'auth' => [
                 'user' => auth()->user(),
-            ],             'employees' => Employee::all(),
+            ],    
+            'employees' => Employee::all(),
             'messages' => Contacts::orderBy('created_at', 'desc')->take(3)->get(), 
             //'services' => Services::latest(1) 
             'services' =>Services::orderBy('created_at', 'desc')->take(3)->get()
@@ -29,9 +30,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-
-
-    Route::get('/client', function () {
+    Route::get('/clients', function () {
         return Inertia::render('Client', [
             'auth' => [
                 'user' => auth()->user(),
@@ -39,24 +38,25 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
             'clients' => Clients::all()
         ]);
-    })->name('client');
+    })->name('clients');
 
 });
 
+
 Route::middleware(['auth', 'verified'])->group(function () {
 
-
-    Route::get('/clientdetail', function () {
+  Route::get('/client/{$pin}', function ($pin) {
         return Inertia::render('ClientDetail', [
             'auth' => [
                 'user' => auth()->user(),
             ],
-
-            'clients' => Clients::all()
+            'client' => Clients::where('client_pin', $pin)->first()
         ]);
-    })->name('clientdetail');
+    })->name('client');
 
 });
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

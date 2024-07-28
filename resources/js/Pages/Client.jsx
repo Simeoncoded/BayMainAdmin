@@ -1,7 +1,6 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { useState } from "react";
 import styles from "../../css/clients.module.css";
-
 export default function Client({ auth, clients }) {
     const [search, setSearch] = useState("");
 
@@ -17,10 +16,7 @@ export default function Client({ auth, clients }) {
     );
 
     const showMore = (client_pin) => {
-        const client = clients.find(
-            (client) => client.client_pin === client_pin
-        );
-        console.log(client);
+        return route("client", client_pin);
     };
     return (
         <AuthenticatedLayout
@@ -58,14 +54,20 @@ export default function Client({ auth, clients }) {
                                 <td>{client.industry}</td>
                                 <td>
                                     <a
-                                        href={route("clientdetail")}
-                                        active={route().current("clientdetail")}
+                                        href={route(
+                                            `client/`,
+                                            client.client_pin
+                                        )}
+                                        active={route().current(
+                                            `client/`,
+                                            client.client_pin
+                                        )}
                                     >
                                         <button
                                             className={styles.viMore}
                                             onClick={() => {
                                                 console.log(client.client_pin);
-                                                showMore(client.client_pin);
+                                                // showMore(client.client_pin);
                                             }}
                                         >
                                             {" "}

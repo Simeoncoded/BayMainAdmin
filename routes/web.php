@@ -17,7 +17,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('Dashboard', [
             'auth' => [
                 'user' => auth()->user(),
-            ],             'employees' => Employee::all(),
+            ],    
+            'employees' => Employee::all(),
             'messages' => Contacts::orderBy('created_at', 'desc')->take(3)->get(), 
             //'services' => Services::latest(1) 
             'services' =>Services::orderBy('created_at', 'desc')->take(3)->get()
@@ -28,20 +29,35 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-
-
-    Route::get('/client', function () {
+    Route::get('/clients', function () {
         return Inertia::render('Client', [
             'auth' => [
                 'user' => auth()->user(),
             ],
             'clients' => Clients::all()
         ]);
+    })->name('clients');
+
+});
+
+
+Route::middleware(['auth', 'verified'])->group(function () {
+<<<<<<< HEAD
+
+  Route::get('/client/{$pin}', function ($pin) {
+        return Inertia::render('ClientDetail', [
+            'auth' => [
+                'user' => auth()->user(),
+            ],
+            'client' => Clients::where('client_pin', $pin)->first()
+        ]);
     })->name('client');
 
 });
 
-Route::middleware(['auth', 'verified'])->group(function () {
+
+
+=======
     Route::get('/plan', function () {
         return Inertia::render('Plan', [
             'auth' => [
@@ -53,6 +69,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 
+>>>>>>> 4a79a9c26376f715f5c0fc41b43ea2d29e69b638
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

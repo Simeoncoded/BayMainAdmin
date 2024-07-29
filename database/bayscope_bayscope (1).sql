@@ -299,6 +299,7 @@ CREATE TABLE `invoices` (
 
 -- --------------------------------------------------------
 
+
 --
 -- Table structure for table `jobs`
 --

@@ -10,7 +10,8 @@ use App\Models\Contacts;
 use App\Models\Services;
 use App\Models\Clients;
 use App\Models\Plans;
-
+use App\Models\Plugins;
+use App\Http\Controllers\PluginController;
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
@@ -62,7 +63,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
             'auth' => [
                 'user' => auth()->user(),
             ],
-            'plans' => Plans::all()
+            'plans' => Plans::all(),
+            'plugins' => Plugins::all()
         ]);
     })->name('plan');
 
@@ -89,6 +91,16 @@ Route::group(['middleware '=> 'auth', 'prefix'=> 'employee'], function () {
     Route::post('/create', [EmployeeController::class, 'create']);
 
 }); 
+
+//PLUGIN ROUTE
+
+// PLUGIN ROUTE
+Route::group(['middleware' => 'auth', 'prefix' => 'plugin'], function () {
+    Route::post('/create', [PluginController::class, 'create']);
+    Route::post('/delete/{id}', [PluginController::class, 'delete']);
+});
+
+
 
 /**
  * ROOT ROUTING

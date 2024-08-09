@@ -1,22 +1,22 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { useState } from "react";
 import styles from "../../css/clients.module.css";
-export default function Client({ auth, clients }) {
+export default function Client({ auth, client }) {
     const [search, setSearch] = useState("");
 
     const handleSearch = (e) => {
         setSearch(e.target.value);
     };
 
-    const filteredClients = clients.filter(
+    const filteredClients = client.filter(
         (client) =>
             client.name.toLowerCase().includes(search.toLowerCase()) ||
             client.email.toLowerCase().includes(search.toLowerCase()) ||
             client.industry.toLowerCase().includes(search.toLowerCase())
     );
 
-    const showMore = (client_pin) => {
-        return route("client", client_pin);
+    const showMore = () => {
+        return route("clientdetail");
     };
     return (
         <AuthenticatedLayout
@@ -55,19 +55,18 @@ export default function Client({ auth, clients }) {
                                 <td>
                                     <a
                                         href={route(
-                                            `client/`,
+                                            `clientdetail`,
                                             client.client_pin
                                         )}
                                         active={route().current(
-                                            `client/`,
-                                            client.client_pin
+                                            `clientdetail`
                                         )}
                                     >
                                         <button
                                             className={styles.viMore}
                                             onClick={() => {
                                                 console.log(client.client_pin);
-                                                // showMore(client.client_pin);
+                                                showMore(client.client_pin);
                                             }}
                                         >
                                             {" "}

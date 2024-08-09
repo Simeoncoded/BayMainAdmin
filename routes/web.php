@@ -10,8 +10,15 @@ use App\Models\Clients;
 //use App\Models\ClientDetail;
 use App\Models\Contacts;
 use App\Models\Services;
+<<<<<<< HEAD
 
 
+=======
+use App\Models\Clients;
+use App\Models\Plans;
+use App\Models\Plugins;
+use App\Http\Controllers\PluginController;
+>>>>>>> b15924562664af1a845d880b6d77dff8e2fa9159
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
@@ -38,7 +45,21 @@ Route::middleware(['auth', 'verified'])->group(function () {
                 'user' => auth()->user(),
             ],
 
+<<<<<<< HEAD
             'client' => Clients::all()
+=======
+});
+
+
+Route::middleware(['auth', 'verified'])->group(function () {
+
+  Route::get('/client/{$pin}', function ($pin) {
+        return Inertia::render('ClientDetail', [
+            'auth' => [
+                'user' => auth()->user(),
+            ],
+            'client' => Clients::where('client_pin', $pin)->first()
+>>>>>>> b15924562664af1a845d880b6d77dff8e2fa9159
         ]);
     })->name('client');
 
@@ -48,6 +69,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware(['auth', 'verified'])->group(function () {
 
 
+<<<<<<< HEAD
     Route::get('/clientdetail', function() {
         return Inertia::render('ClientDetail', [
             'auth' => [
@@ -60,6 +82,21 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 });
 
+=======
+    Route::get('/plan', function () {
+        return Inertia::render('Plan', [
+            'auth' => [
+                'user' => auth()->user(),
+            ],
+            'plans' => Plans::all(),
+            'plugins' => Plugins::all()
+        ]);
+    })->name('plan');
+
+
+
+
+>>>>>>> b15924562664af1a845d880b6d77dff8e2fa9159
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -80,6 +117,16 @@ Route::group(['middleware '=> 'auth', 'prefix'=> 'employee'], function () {
     Route::post('/create', [EmployeeController::class, 'create']);
 
 }); 
+
+//PLUGIN ROUTE
+
+// PLUGIN ROUTE
+Route::group(['middleware' => 'auth', 'prefix' => 'plugin'], function () {
+    Route::post('/create', [PluginController::class, 'create']);
+    Route::post('/delete/{id}', [PluginController::class, 'delete']);
+});
+
+
 
 /**
  * ROOT ROUTING

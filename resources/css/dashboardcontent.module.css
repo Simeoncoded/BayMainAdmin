@@ -1,33 +1,49 @@
-.dHead{
+/* dashboardcontent.module.css */
+
+.dHead {
     font-size: 30px;
     font-weight: bold;
+    margin-bottom: 20px; /* Space below the heading */
 }
+
 .goalsCols {
     display: grid;
     gap: 20px;
-    /*grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;*/
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    margin:15px auto 25px auto;
+    margin: 15px auto 25px auto;
     width: 95%;
 }
+
 .qCols {
     display: grid;
-    gap:20px;
+    gap: 20px;
     grid-template-columns: 1fr 1fr 1fr;
-    margin:15px auto 25px auto;
-    
+    margin: 15px auto 25px auto;
 }
-.dContent{
+
+.dContent {
     border: 1px solid black;
     border-radius: 5px;
     text-align: center;
     padding: 20px;
 }
-.dContent h2{
+
+.dContent h2 {
     font-weight: bold;
     font-size: 1.3em;
+}
+
+.recentH3 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.9em;
+    margin-bottom: 20px; /* Space below the heading */
+}
+
+.recentH {
+    font-weight: bold;
+    font-size: 1.9em;
 }
 
 .recentContent1 {
@@ -37,35 +53,17 @@
     padding-left: 15px;
     padding-top: 1px;
     border-radius: 5px;
+}   
+
+.messagesServicesContainer {
+    margin-bottom: 20px; /* Space below the messages/services section */
 }
 
-.recentPost, .recentComment {
-    margin-top: 20px;
+.quickServiceContainer {
+    margin-bottom: 20px; /* Space below the quick service section */
 }
 
-.recentPostLink {
-    text-decoration: none;
-}
-
-.recentCommentLink {
-    text-decoration: none;
-}
-
-.recentH {
-    font-weight: bold;
-    font-size: 1.9em;
-}
-
-.recentH2 {
-    font-weight: bold;
-    font-size: 1.3em;
-}
-.recentH3{
-    text-align: center;
-    font-weight: bold;
-    font-size: 1.9em;
-}
-.Qbtn{
+.Qbtn {
     background-color: rgb(96, 96, 171);
     height: 80px;
     width: 80%;
